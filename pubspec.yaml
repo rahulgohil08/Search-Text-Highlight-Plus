@@ -1,7 +1,7 @@
-name: highlight_text_editor
-description: "A new Flutter package project."
+name: highlight_text_plus
+description: "The highlight_text_plus package is a powerful tool for developers looking to implement text highlighting features in their Flutter applications. With its customizable styles and easy-to-use API, it simplifies the process of highlighting and navigating through text."
 version: 0.0.1
-homepage:
+homepage: https://github.com/rahulgohil08/Text-Highlight-With-Search
 
 environment:
   sdk: '>=3.4.3 <4.0.0'

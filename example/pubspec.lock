@@ -75,7 +75,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  highlight_text_editor:
+  highlight_text_plus:
     dependency: "direct main"
     description:
       path: ".."

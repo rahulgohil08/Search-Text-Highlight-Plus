@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:highlight_text_editor/highlight_text_editor.dart';
+import 'package:highlight_text_plus/data/highlight_span.dart';
+import 'package:highlight_text_plus/highlight_text_plus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HighlightTextEditor(),
     );
   }
@@ -20,7 +22,7 @@ class HighlightTextEditor extends StatefulWidget {
   const HighlightTextEditor({super.key});
 
   @override
-  _HighlightTextEditorState createState() => _HighlightTextEditorState();
+  State<HighlightTextEditor> createState() => _HighlightTextEditorState();
 }
 
 class _HighlightTextEditorState extends State<HighlightTextEditor> {
@@ -35,15 +37,19 @@ class _HighlightTextEditorState extends State<HighlightTextEditor> {
     _scrollController = ScrollController();
 
     _highlightTextController = HighlightTextController(
-      text: '''
-  In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts.
-  '''
-          .trim(),
+      text: englishText.trim(),
       scrollController: _scrollController,
-      selectedTextColor: Colors.redAccent,
-      highlightTextColor: Colors.yellow,
+      selectedTextBackgroundColor: Colors.redAccent,
+      highlightTextBackgroundColor: Colors.yellow,
+      selectedHighlightedTextStyle: const TextStyle(
+        color: Colors.white,
+        fontSize: 19,
+      ),
+      highlightedTextStyle: const TextStyle(
+        color: Colors.black,
+        fontSize: 19,
+      ),
     );
-
   }
 
   @override
@@ -57,51 +63,56 @@ class _HighlightTextEditorState extends State<HighlightTextEditor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Highlight Text Editor')),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: const InputDecoration(
-                labelText: 'Enter search term',
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) {
-                // Pass the search query to the controller
-                _highlightTextController.highlightSearchTerm(value);
-              },
-            ),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              controller: _highlightTextController.scrollController,
-              child: ValueListenableBuilder<List<HighlightSpan>>(
-                valueListenable: _highlightTextController.highlightsNotifier,
-                builder: (context, highlights, child) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 16.0),
-                    child: TextField(
-                      // readOnly: true,
-                      controller: _highlightTextController,
-                      maxLines: null,
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                      style: const TextStyle(fontSize: 20),
-                      onChanged: (value) {
-                        _highlightTextController.highlightSearchTerm(
-                          _searchController.text.trim(),
-                        );
-                      },
-                    ),
-                  );
+      appBar: AppBar(title: const Text('Highlight Text Plus')),
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _searchController,
+                decoration: const InputDecoration(
+                  labelText: 'Enter search term',
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  // Pass the search query to the controller
+                  _highlightTextController.highlightSearchTerm(value);
                 },
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: SingleChildScrollView(
+                controller: _highlightTextController.scrollController,
+                child: ValueListenableBuilder<List<HighlightSpan>>(
+                  valueListenable: _highlightTextController.highlightsNotifier,
+                  builder: (context, highlights, child) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 16.0),
+                      child: TextField(
+                        // readOnly: true,
+                        controller: _highlightTextController,
+                        maxLines: null,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                        style: const TextStyle(fontSize: 20),
+                        onChanged: (value) {
+                          _highlightTextController.highlightSearchTerm(
+                            _searchController.text.trim(),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -124,3 +135,11 @@ class _HighlightTextEditorState extends State<HighlightTextEditor> {
     );
   }
 }
+
+const englishText = '''
+  In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts.
+  ''';
+
+const arabicText = '''
+  في قرية صغيرة، كان هناك منزل صغير بحديقة صغيرة. أحب الأطفال الصغار اللعب بألعابهم الصغيرة في الفناء الخلفي الصغير. كل تفصيل صغير في عالمهم الصغير جلب لهم فرحة كبيرة. اللحظات الصغيرة التي شاركوها كانت محبوبة إلى الأبد في قلوبهم الصغيرة. في قرية صغيرة، كان هناك منزل صغير بحديقة صغيرة. أحب الأطفال الصغار اللعب بألعابهم الصغيرة في الفناء الخلفي الصغير. كل تفصيل صغير في عالمهم الصغير جلب لهم فرحة كبيرة. اللحظات الصغيرة التي شاركوها كانت محبوبة إلى الأبد في قلوبهم الصغيرة. في قرية صغيرة، كان هناك منزل صغير بحديقة صغيرة. أحب الأطفال الصغار اللعب بألعابهم الصغيرة في الفناء الخلفي الصغير. كل تفصيل صغير في عالمهم الصغير جلب لهم فرحة كبيرة. اللحظات الصغيرة التي شاركوها كانت محبوبة إلى الأبد في قلوبهم الصغيرة. في قرية صغيرة، كان هناك منزل صغير بحديقة صغيرة. أحب الأطفال الصغار اللعب بألعابهم الصغيرة في الفناء الخلفي الصغير. كل تفصيل صغير في عالمهم الصغير جلب لهم فرحة كبيرة. اللحظات الصغيرة التي شاركوها كانت محبوبة إلى الأبد في قلوبهم الصغيرة.
+  ''';
