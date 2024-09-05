@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-Highlight Text Plus is a Flutter package that allows you to highlight search terms within a text field. It provides a customizable way to highlight text with different styles and colors, and includes functionality to navigate between highlighted terms.
+Search Text Highlight Plus is a Flutter package that allows you to highlight search terms within a text field. It provides a customizable way to highlight text with different styles and colors, and includes functionality to navigate between highlighted terms.
 
 ## Features
 
@@ -43,7 +43,7 @@ https://github.com/user-attachments/assets/f67fae4d-353f-4d41-9630-aad0f233800a
 You can customize the highlight colors and text styles by passing the appropriate parameters to the `HighlightTextController`
 
 ```dart
-import 'package:highlight_text_plus/highlight_text_plus.dart';
+import 'package:search_text_highlight_plus/search_text_highlight_plus.dart';
 import 'package:flutter/material.dart';
 
 // Create an instance of HighlightTextController
@@ -78,12 +78,12 @@ final _highlightTextController = HighlightTextController(
 
 
 ## Example
-Here is a basic example of how to use the Highlight Text Plus package:
+Here is a basic example of how to use the Search Text Highlight Plus package:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:highlight_text_plus/data/highlight_span.dart';
-import 'package:highlight_text_plus/highlight_text_plus.dart';
+import 'package:search_text_highlight_plus/data/highlight_span.dart';
+import 'package:search_text_highlight_plus/search_text_highlight_plus.dart';
 
 void main() {
   runApp(const MyApp());

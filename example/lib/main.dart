@@ -1,6 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:highlight_text_plus/data/highlight_span.dart';
-import 'package:highlight_text_plus/highlight_text_plus.dart';
+import 'package:search_text_highlight_plus/data/highlight_span.dart';
+import 'package:search_text_highlight_plus/search_highlight_text_plus.dart';
+
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:search_text_highlight_plus/data/highlight_span.dart';
+import 'package:search_text_highlight_plus/search_highlight_text_plus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +36,7 @@ class _HighlightTextEditorState extends State<HighlightTextEditor> {
   late HighlightTextController _highlightTextController;
   late TextEditingController _searchController;
   late ScrollController _scrollController;
+  Timer? _debounceTimer;
 
   @override
   void initState() {
@@ -57,7 +65,18 @@ class _HighlightTextEditorState extends State<HighlightTextEditor> {
     _highlightTextController.dispose();
     _searchController.dispose();
     _scrollController.dispose();
+    _debounceTimer?.cancel(); // Dispose of the timer
     super.dispose();
+  }
+
+  // Debounce method to delay the search query processing
+  void _onSearchChanged(String query) {
+    if (_debounceTimer?.isActive ?? false) {
+      _debounceTimer?.cancel();
+    }
+    _debounceTimer = Timer(const Duration(milliseconds: 0), () { // increase the debounce timer according to your need.
+      _highlightTextController.highlightSearchTerm(query);
+    });
   }
 
   @override
@@ -76,8 +95,7 @@ class _HighlightTextEditorState extends State<HighlightTextEditor> {
                   border: OutlineInputBorder(),
                 ),
                 onChanged: (value) {
-                  // Pass the search query to the controller
-                  _highlightTextController.highlightSearchTerm(value);
+                  _onSearchChanged(value); // Use the debounce method here
                 },
               ),
             ),
@@ -101,9 +119,7 @@ class _HighlightTextEditorState extends State<HighlightTextEditor> {
                         ),
                         style: const TextStyle(fontSize: 20),
                         onChanged: (value) {
-                          _highlightTextController.highlightSearchTerm(
-                            _searchController.text.trim(),
-                          );
+                          _onSearchChanged(_searchController.text.trim());
                         },
                       ),
                     );
@@ -135,6 +151,9 @@ class _HighlightTextEditorState extends State<HighlightTextEditor> {
     );
   }
 }
+
+
+
 
 const englishText = '''
   In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts. In a small village, there was a small house with a small garden. The small children loved to play with their small toys in the small backyard. Every small detail of their small world brought them immense joy. The small moments they shared were forever cherished in their small hearts.

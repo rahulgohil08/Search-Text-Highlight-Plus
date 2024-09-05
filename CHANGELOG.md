@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
-- Initial release of the `highlight_text_plus` package.
+- Initial release of the `search_text_highlight_plus` package.
 - `HighlightTextController` class for managing text highlighting.
 - Support for highlighting search terms within a text.
 - Customizable highlight colors and text styles.
@@ -21,7 +21,7 @@ All notable changes to this project will be documented in this file.
 ## [0.0.1] - 2024-09-05
 
 ### Added
-- Initial release of the `highlight_text_plus` package.
+- Initial release of the `search_text_highlight_plus` package.
 - `HighlightTextController` class for managing text highlighting.
 - Support for highlighting search terms within a text.
 - Customizable highlight colors and text styles.

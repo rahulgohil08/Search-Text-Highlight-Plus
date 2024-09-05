@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  highlight_text_plus:
+  search_text_highlight_plus:
     path: ../
 
 

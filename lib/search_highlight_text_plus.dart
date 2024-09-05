@@ -1,7 +1,7 @@
-library highlight_text_plus;
+library search_text_highlight_plus;
 
 import 'package:flutter/material.dart';
-import 'package:highlight_text_plus/data/highlight_span.dart';
+import 'package:search_text_highlight_plus/data/highlight_span.dart';
 
 /// A controller for managing and highlighting text within a [TextField] or [TextFormField].
 class HighlightTextController extends TextEditingController {
