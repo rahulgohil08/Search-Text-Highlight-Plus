@@ -36,9 +36,8 @@ Highlight Text Plus is a Flutter package that allows you to highlight search ter
 
 
 ## Usage
-<video src='files/package-usage.mov' width=180/> 
+https://github.com/user-attachments/assets/f67fae4d-353f-4d41-9630-aad0f233800a
 
- 
 
 ## Customization
 You can customize the highlight colors and text styles by passing the appropriate parameters to the `HighlightTextController`
