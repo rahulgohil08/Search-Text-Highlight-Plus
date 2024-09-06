@@ -30,16 +30,13 @@ Search Text Highlight Plus is a Flutter package that allows you to highlight sea
 
   ```yaml
   dependencies:
-    highlight_text_plus: ^1.0.0 
+    highlight_text_plus: ^0.0.4
   ```
 
 
+## Usage
+<img src="https://github.com/user-attachments/assets/0118fb94-952a-4672-af30-826dd5182c6e" width="190" height="350"/>
 
-## Usage Video
-https://github.com/user-attachments/assets/f67fae4d-353f-4d41-9630-aad0f233800a
-
-## Usage GIF
-![package-usage](https://github.com/user-attachments/assets/0118fb94-952a-4672-af30-826dd5182c6e)
 
 
 
