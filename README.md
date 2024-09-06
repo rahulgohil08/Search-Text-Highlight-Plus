@@ -35,7 +35,10 @@ Search Text Highlight Plus is a Flutter package that allows you to highlight sea
 
 
 ## Usage
-<img src="https://github.com/user-attachments/assets/0118fb94-952a-4672-af30-826dd5182c6e" width="190" height="350"/>
+<img src="https://github.com/user-attachments/assets/02423568-b17e-4da1-a758-5310ce0d4053" width="200" height="400"/>
+
+
+
 
 
 
