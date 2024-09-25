@@ -8,13 +8,8 @@
 - Navigation between highlighted terms using `highlightNext` and `highlightPrevious` methods.
 - Example application demonstrating the usage of the package.
 
-### Fixed
-- N/A
 
-### Changed
-- N/A
-
-## [0.0.4] - 2024-09-06
+## [0.0.5+3] - 2024-09-06
 
 ### Added
 - Initial release of the `search_text_highlight_plus` package.
@@ -24,9 +19,4 @@
 - Navigation between highlighted terms using `highlightNext` and `highlightPrevious` methods.
 - Example application demonstrating the usage of the package.
 
-### Fixed
-- N/A
-
-### Changed
-- N/A
 

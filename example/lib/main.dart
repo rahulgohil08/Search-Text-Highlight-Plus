@@ -4,11 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:search_text_highlight_plus/data/highlight_span.dart';
 import 'package:search_text_highlight_plus/search_text_highlight_plus.dart';
 
-import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:search_text_highlight_plus/data/highlight_span.dart';
-import 'package:search_text_highlight_plus/search_text_highlight_plus.dart';
-
 void main() {
   runApp(const MyApp());
 }

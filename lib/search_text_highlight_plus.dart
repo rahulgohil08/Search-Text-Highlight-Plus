@@ -29,13 +29,17 @@ class HighlightTextController extends TextEditingController {
   int _currentIndex = -1;
 
   /// A notifier for the list of highlight spans.
-  ValueNotifier<List<HighlightSpan>> highlightsNotifier = ValueNotifier([]);
+  final ValueNotifier<List<HighlightSpan>> _highlightsNotifier =
+      ValueNotifier([]);
+
+  ValueNotifier<List<HighlightSpan>> get highlightsNotifier =>
+      _highlightsNotifier;
 
   /// Gets the current index of the highlighted text.
   int get currentIndex => _currentIndex;
 
   /// Gets the total number of highlights.
-  int get totalHighlights => highlightsNotifier.value.length;
+  int get totalHighlights => _highlightsNotifier.value.length;
 
   /// Creates a [HighlightTextController] with the given parameters.
   HighlightTextController({
@@ -59,7 +63,7 @@ class HighlightTextController extends TextEditingController {
 
     setHighlights(searchTerm: searchTerm, currentIndex: _currentIndex);
 
-    if (_currentIndex == -1 && highlightsNotifier.value.isNotEmpty) {
+    if (_currentIndex == -1 && _highlightsNotifier.value.isNotEmpty) {
       _currentIndex = 0;
       _scrollToCurrent();
     }
@@ -91,17 +95,17 @@ class HighlightTextController extends TextEditingController {
       );
     }
 
-    highlightsNotifier.value = newHighlights;
+    _highlightsNotifier.value = newHighlights;
   }
 
   /// Updates the highlight color for the current index.
   void updateHighlightColor(int currentIndex) {
     List<HighlightSpan> updatedHighlights = [];
-    for (int i = 0; i < highlightsNotifier.value.length; i++) {
+    for (int i = 0; i < _highlightsNotifier.value.length; i++) {
       updatedHighlights.add(
         HighlightSpan(
-            start: highlightsNotifier.value[i].start,
-            end: highlightsNotifier.value[i].end,
+            start: _highlightsNotifier.value[i].start,
+            end: _highlightsNotifier.value[i].end,
             color: i == currentIndex
                 ? selectedTextBackgroundColor
                 : highlightTextBackgroundColor,
@@ -110,7 +114,7 @@ class HighlightTextController extends TextEditingController {
                 : highlightedTextStyle),
       );
     }
-    highlightsNotifier.value = updatedHighlights;
+    _highlightsNotifier.value = updatedHighlights;
   }
 
   /// Scrolls to the current highlight.
@@ -119,8 +123,8 @@ class HighlightTextController extends TextEditingController {
       return;
     }
 
-    if (_currentIndex != -1 && highlightsNotifier.value.isNotEmpty) {
-      final index = highlightsNotifier.value[_currentIndex].start;
+    if (_currentIndex != -1 && _highlightsNotifier.value.isNotEmpty) {
+      final index = _highlightsNotifier.value[_currentIndex].start;
       scrollController!.animateTo(
         (index / text.length) * scrollController!.position.maxScrollExtent,
         duration: const Duration(milliseconds: 300),
@@ -131,7 +135,7 @@ class HighlightTextController extends TextEditingController {
 
   /// Highlights the next occurrence of the search term.
   void highlightNext() {
-    if (_currentIndex < highlightsNotifier.value.length - 1) {
+    if (_currentIndex < _highlightsNotifier.value.length - 1) {
       _currentIndex++;
       updateHighlightColor(_currentIndex);
       _scrollToCurrent();
@@ -149,7 +153,7 @@ class HighlightTextController extends TextEditingController {
 
   /// Clears all highlights.
   void _clearHighlights() {
-    highlightsNotifier.value = [];
+    _highlightsNotifier.value = [];
   }
 
   @override
@@ -160,7 +164,7 @@ class HighlightTextController extends TextEditingController {
   }) {
     List<TextSpan> children = [];
     String fullText = value.text;
-    List<HighlightSpan> highlights = highlightsNotifier.value;
+    List<HighlightSpan> highlights = _highlightsNotifier.value;
 
     if (highlights.isEmpty) {
       children.add(TextSpan(text: fullText));
@@ -182,7 +186,7 @@ class HighlightTextController extends TextEditingController {
           TextSpan(
             text: fullText.substring(highlight.start, highlight.end),
             style: highlight.textStyle
-                ?.copyWith(backgroundColor: highlight.color) ??
+                    ?.copyWith(backgroundColor: highlight.color) ??
                 TextStyle(backgroundColor: highlight.color),
           ),
         );

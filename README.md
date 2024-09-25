@@ -30,7 +30,7 @@ Search Text Highlight Plus is a Flutter package that allows you to highlight sea
 
   ```yaml
   dependencies:
-    highlight_text_plus: ^0.0.4
+    search_text_highlight_plus: ^0.0.5+3
   ```
 
 

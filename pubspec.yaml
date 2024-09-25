@@ -1,7 +1,7 @@
 name: search_text_highlight_plus
-description: "The search_text_highlight_plus package is a powerful tool for developers looking to implement text highlighting features in their Flutter applications. With its customizable styles and easy-to-use API, it simplifies the process of highlighting and navigating through text."
-version: 0.0.4
-homepage: https://github.com/rahulgohil08/Search-Highlight-Text-Plus
+description: "The `search_text_highlight_plus` package offers customizable text highlighting features for Flutter apps, simplifying text navigation and styling."
+version: 0.0.5+3
+homepage: https://github.com/rahulgohil08/Search-Text-Highlight-Plus
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
